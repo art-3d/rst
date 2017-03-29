@@ -1,17 +1,1 @@
-Silex Test Application
-==============
-
-Installation
-------------
-
-    $ git clone https://github.com/art-3d/silex-users-app
-    $ cd silex-users-app
-    $ composer install
-
-Then update database options inside `config/prod.php`
-
-    $ bin/console doctrine:schema:load
-    $ bin/console fixture:load
-
-    $ run
-
+function getRandomColor(){return"#"+(16777215*Math.random()<<0).toString(16)}function random(a,b){return Math.floor(Math.random()*(b-a+1))+a}function generateData(){for(var a=[],b=0;b<10;b++)a.push({phi:0,petal:2+random(0,12),scale:2+random(2,8),xMax:random(25,800),yMax:random(25,600),color:getRandomColor()});return a}function init(){var a=document.createElement("canvas");a.width=1e3,a.height=700,a.setAttribute("width",1e3),a.setAttribute("height",700),a.setAttribute("style","position: absolute; margin: 25px;right:0;"),document.body.innerHTML="",document.body.appendChild(a),window.ctx=a.getContext("2d"),ctx.fillRect(0,0,a.width,a.height),ctx.fillStyle="#FFFFFF";for(var b=0;b<500;b++)ctx.fillRect(random(0,a.width),random(0,a.height),1,1);window.data=generateData(),window.timers=[],ctx.fillStyle=getRandomColor();for(var b=0;b<10;b++)window.timers[b]=setInterval(draw,4,b)}function draw(a){var b=data[a],c=12*Math.sin(b.petal*b.phi),d=b.xMax+Math.trunc(b.scale*c*Math.cos(b.phi)),e=b.yMax+Math.trunc(b.scale*c*Math.sin(b.phi));b.phi+=Math.PI/1800,ctx.fillStyle=b.color,a<2&&(ctx.fillStyle=getRandomColor()),ctx.fillRect(d+50,e+50,2,2),b.phi>2*Math.PI&&clearTimeout(timers[a])}init();
